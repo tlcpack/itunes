@@ -1,0 +1,6 @@
+.song_info {
+    border: 3px;
+    border-color: red;
+    border-style: dashed;
+    margin:10px;
+}

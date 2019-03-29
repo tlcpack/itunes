@@ -13,9 +13,13 @@ function queryAll(selector) {
 
 const searchValue = query('.search input')
 const searchbutton = query('.search button')
-let trackName = document.createElement('div')
+
 const allTracks = query('.tracks')
 const allAlbums = query('.albums')
+
+
+const songInfoDiv = document.createElement('div')
+
 
 
 function getMusic(name) {
@@ -34,28 +38,34 @@ function updateMusic(name) {
     getMusic(name)
     .then(function (trackList) {
         console.log(trackList)
-        const tracksDiv = query('.tracks')
-        tracksDiv.innerText = "";
+        
         for (let track of trackList.results) {
-            songInfoDiv = document.createElement('div')
-            addTrackName(track);
-            addAlbum(track);
+            
+            addTrackName(track)
+            // addAlbum(track)
+            
             
         }
     })
 }
 
 function addTrackName(song) {
+    // makes the div
     let trackName = document.createElement('div')
-    trackName.classList.add("tracks")
+    trackName.classList.add("song_info")
+    // trackName.classList.add("tracks")
+    // puts the div into the tracks class
     allTracks.append(trackName)
-    trackName.innerHTML = `<span class="label">Track: </span>${song.trackName}`
+    // adding HTML
+    trackName.innerHTML = `<span class="song">Track: </span>${song.trackName} from the album ${song.collectionName}<br>Listen to a preview:<br><audio controls src="${song.previewUrl}">Your browser does not support the <code>audio</code> element.</audio>`
+
+
 }
 
 function addAlbum(song) {
     let collectionName = document.createElement('div')
     allAlbums.append(collectionName)
-    collectionName.innerText = `${song.collectionName}`;
+    // collectionName.innerText = `${song.collectionName}`;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
