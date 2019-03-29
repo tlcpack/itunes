@@ -15,6 +15,7 @@ const searchValue = query('.search input')
 const searchbutton = query('.search button')
 let trackName = document.createElement('div')
 const allTracks = query('.tracks')
+const allAlbums = query('.albums')
 
 
 function getMusic(name) {
@@ -31,15 +32,30 @@ function getMusic(name) {
 
 function updateMusic(name) {
     getMusic(name)
-    .then(trackData => { for(let song of Object.values((trackData))[1])
-        addTrackName(song)
+    .then(function (trackList) {
+        console.log(trackList)
+        const tracksDiv = query('.tracks')
+        tracksDiv.innerText = "";
+        for (let track of trackList.results) {
+            songInfoDiv = document.createElement('div')
+            addTrackName(track);
+            addAlbum(track);
+            
+        }
     })
 }
 
 function addTrackName(song) {
     let trackName = document.createElement('div')
+    trackName.classList.add("tracks")
     allTracks.append(trackName)
-    trackName.innerText = `${song.trackName}`
+    trackName.innerHTML = `<span class="label">Track: </span>${song.trackName}`
+}
+
+function addAlbum(song) {
+    let collectionName = document.createElement('div')
+    allAlbums.append(collectionName)
+    collectionName.innerText = `${song.collectionName}`;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
