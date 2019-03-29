@@ -11,53 +11,41 @@ function queryAll(selector) {
     return document.querySelectorAll(selector);
 }
 
-const searchDiv = query('#search-button');
-const searchButton = document.createElement('div');
-searchButton.innerText = 'Search Button';
-searchButton.addEventListener('click', function() {
-    updateInfo(name);
-})
-searchDiv.appendChild(searchButton);
-searchButton.classList.add('search-button');
+const searchValue = query('.search input')
+const searchbutton = query('.search button')
+let trackName = document.createElement('div')
+const allTracks = query('.tracks')
 
 
-function getInfo(input) {
-    (encodeURIComponent(input));
-    let promise = fetch(`https://itunes-api-proxy.glitch.me/search?term=${input}`)
-    .then(function(response) {
-        if (!response.ok) {
-            console.log("error");
-            throw Error(response.statusText);
-        }
-        console.log("past error");
-        return response.json();
-        
-    })
-    console.log("to promise");
-    return promise;  
+function getMusic(name) {
+    const promise = fetch(
+        `https://itunes-api-proxy.glitch.me/search?term=${name}`
+        ).then(function (response) {
+            if(!response.ok) {
+                throw Error(response.statusText)
+            }
+            return response.json()
+        })
+        return promise
 }
 
-function updateInfo(name) {
-    getInfo(name);
-    console.log(name)
-    .then(function (searchResult) {
-        const trackDiv = query('#track');
-        const artist = name;
-        query('#artist').innerText = artist;
-        let index;
-        for (index = 0; index < searchResult.results.length; index++){
-            trackItem.innerText = searchResult.results[index].trackName;
-        }
+function updateMusic(name) {
+    getMusic(name)
+    .then(trackData => { for(let song of Object.values((trackData))[1])
+        addTrackName(song)
     })
 }
 
-
-
-
+function addTrackName(song) {
+    let trackName = document.createElement('div')
+    allTracks.append(trackName)
+    trackName.innerText = `${song.trackName}`
+}
 
 document.addEventListener('DOMContentLoaded', function() {
-    query('#name').addEventListener('change ', function(event){
+    query('.search').addEventListener('change', function(event){
         console.log(event.target.value)
-        updateInfo(event.target.value)
+        updateMusic(event.target.value)
+
     })
 })
