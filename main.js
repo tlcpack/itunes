@@ -58,6 +58,7 @@ function addTrackName(song) {
     allTracks.append(trackName)
     // adding HTML
     trackName.innerHTML = `<span class="song">Track: </span>${song.trackName} from the album ${song.collectionName}<br>Listen to a preview:<br><audio controls src="${song.previewUrl}">Your browser does not support the <code>audio</code> element.</audio>`
+    trackName.innerHTML += `<br><img src="${song.artworkUrl60}"/>`
 
 
 }
