@@ -3,4 +3,12 @@
     border-color: red;
     border-style: dashed;
     margin:10px;
+    width: 40%;
+    
+}
+
+.tracks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
