@@ -1,3 +1,12 @@
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#apple {
+    width: 40px;
+    height: auto;
+}
+
 .song_box {
     
     border: 3px;
@@ -7,6 +16,10 @@
     width: 40%;
     border-radius: 10px;
     padding: 20px; 
+}
+
+.track_info {
+    display: flex;
 }
 
 .song_info {

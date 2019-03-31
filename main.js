@@ -60,8 +60,7 @@ function addTrackName(song) {
     // puts the div into the tracks class
     allTracks.append(trackName)
     // adding HTML
-    trackName.innerHTML = `<img class="image" src="${song.artworkUrl100}"/>`
-    trackName.innerHTML += `<div class="song">Track: "${song.trackName}" from the album ${song.collectionName}</div></div><br>Preview:<br><br><audio controls src="${song.previewUrl}">Your browser does not support the <code>audio</code> element.</audio>`
+    trackName.innerHTML = `<div class="track_info"><img class="image" src="${song.artworkUrl100}"/><div class="song">Track: "${song.trackName}" from the album ${song.collectionName}</div></div><br>Preview:<br><br><audio controls src="${song.previewUrl}">Your browser does not support the <code>audio</code> element.</audio>`
     
 
 
