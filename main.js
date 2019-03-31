@@ -13,6 +13,7 @@ function queryAll(selector) {
 
 const searchValue = query('.search input')
 const searchbutton = query('.search button')
+const search = query('.search_button')
 
 const allTracks = query('.tracks')
 const allAlbums = query('.albums')
@@ -37,8 +38,8 @@ function getMusic(name) {
 function updateMusic(name) {
     getMusic(name)
     .then(function (trackList) {
-        console.log(trackList)
         
+        allTracks.innerHTML = "";
         for (let track of trackList.results) {
             
             addTrackName(track)
@@ -51,14 +52,17 @@ function updateMusic(name) {
 
 function addTrackName(song) {
     // makes the div
+    
     let trackName = document.createElement('div')
-    trackName.classList.add("song_info")
+    
+    trackName.classList.add("song_box")
     // trackName.classList.add("tracks")
     // puts the div into the tracks class
     allTracks.append(trackName)
     // adding HTML
-    trackName.innerHTML = `<span class="song">Track: </span>${song.trackName} from the album ${song.collectionName}<br>Listen to a preview:<br><audio controls src="${song.previewUrl}">Your browser does not support the <code>audio</code> element.</audio>`
-    trackName.innerHTML += `<br><img class="image" src="${song.artworkUrl60}"/>`
+    trackName.innerHTML = `<img class="image" src="${song.artworkUrl100}"/>`
+    trackName.innerHTML += `<div class="song">Track: "${song.trackName}" from the album ${song.collectionName}</div></div><br>Preview:<br><br><audio controls src="${song.previewUrl}">Your browser does not support the <code>audio</code> element.</audio>`
+    
 
 
 }
@@ -72,6 +76,7 @@ function addAlbum(song) {
 document.addEventListener('DOMContentLoaded', function() {
     query('.search').addEventListener('change', function(event){
         console.log(event.target.value)
+        
         updateMusic(event.target.value)
 
     })

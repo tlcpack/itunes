@@ -1,14 +1,26 @@
-.song_info {
-    border: 3px;
-    border-color: red;
-    border-style: dashed;
-    margin:10px;
-    width: 40%;
+.song_box {
     
+    border: 3px;
+    border-color: grey;
+    border-style: groove;
+    margin:15px;
+    width: 40%;
+    border-radius: 10px;
+    padding: 20px; 
+}
+
+.song_info {
+    display: flex;
 }
 
 .tracks {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
+    
+}
+
+.search {
+    text-align: center;
+    margin-top: 20px;
 }
