@@ -7,6 +7,9 @@
     height: auto;
 }
 
+.song {
+    padding: 10px;
+}
 .song_box {
     
     border: 3px;
@@ -36,4 +39,8 @@
 .search {
     text-align: center;
     margin-top: 20px;
+}
+
+img {
+    border-radius: 100%;
 }
